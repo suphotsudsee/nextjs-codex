@@ -47,9 +47,15 @@ export default async function AttractionDetail({
         />
         <h1 className="text-3xl font-bold mb-4">{attraction.name}</h1>
         <p className="mb-4">{attraction.detail}</p>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 mb-4">
           Latitude: {attraction.latitude}, Longitude: {attraction.longitude}
         </p>
+        <iframe
+          className="w-full h-64 rounded-md"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          src={`https://maps.google.com/maps?q=${attraction.latitude},${attraction.longitude}&z=15&output=embed`}
+        />
       </div>
     </main>
   );
