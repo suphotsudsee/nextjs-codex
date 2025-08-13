@@ -9,8 +9,13 @@ interface Attraction {
   longitude: number;
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const res = await fetch(`https://www.melivecode.com/api/attractions/${params.id}`, {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const res = await fetch(`https://www.melivecode.com/api/attractions/${id}`, {
     cache: "no-store",
   });
   const data = await res.json();
@@ -20,8 +25,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function AttractionDetail({ params }: { params: { id: string } }) {
-  const res = await fetch(`https://www.melivecode.com/api/attractions/${params.id}`, {
+export default async function AttractionDetail({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const res = await fetch(`https://www.melivecode.com/api/attractions/${id}`, {
     cache: "no-store",
   });
   const data = await res.json();
