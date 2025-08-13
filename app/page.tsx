@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface Attraction {
   id: number;
   name: string;
@@ -18,8 +20,9 @@ export default async function Home() {
       <h1 className="text-3xl font-bold mb-8 text-center">Tourist Attractions</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {attractions.map((item) => (
-          <div
+          <Link
             key={item.id}
+            href={`/attraction/${item.id}`}
             className="flex flex-col bg-white rounded-lg shadow p-4"
           >
             <img
@@ -29,7 +32,7 @@ export default async function Home() {
             />
             <h2 className="text-lg font-semibold mb-2">{item.name}</h2>
             <p className="text-sm text-gray-600 flex-grow">{item.detail}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
